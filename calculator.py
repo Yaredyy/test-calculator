@@ -1,6 +1,6 @@
-line = input("Enter an equation")
-
-while(arr.len()>0 and arr[0]==0):
+line = input("Enter an equation: ")
+arr=line.split(' ')
+while(arr.>1 and arr[0]!=0):
     arr=line.split(' ')
     holder = arr[0]
     for i in range(1,arr.len()):
@@ -13,7 +13,7 @@ while(arr.len()>0 and arr[0]==0):
         elif(i=='/'):
             holder /= arr[i+1]
         else:
-            break
+            continue
         print("The outcome is "+ holder)
         line = input("Enter an equation")
 
