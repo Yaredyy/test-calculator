@@ -1,13 +1,3 @@
-import kivy
-from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-
-kivy.require("1.9.1")
-
-
 """
 Author: Yared Y Yehualashet
 Date:10/12/2022
@@ -53,8 +43,8 @@ Description:
 
 #return is put in every method to remove indentation error
 
-class cart():
-    
+class inv:
+
     #initilizes the cart to have no items and positions equal to 0
     def __init__(self):
         self.name = []
@@ -65,13 +55,13 @@ class cart():
         self.pricePos = 0
         
         return
-    
-    
-    
-    
+
+
+
+
     #if item exists in cart, updates amm
     #else, adds item's name, amm, and price while updating respective position by 1
-    
+
     def add (self, name2, amm, price):
         if (name2 in self.name):
             pos = self.name.index(name2)
@@ -86,10 +76,10 @@ class cart():
         
         return
 
-    
+
     #removes item from cart if ammount specified is above ammount in cart, otherwise just removes specified ammount
-    
-    def remSome(self, name2, amm):
+
+    def remSItem(self, name2, amm):
         
         if(name2 in self.name):
             pos = self.name.index(name2)
@@ -108,7 +98,7 @@ class cart():
         return
 
     #if item exists in cart, removes the item entirely, ammount cannot be specified
-    def remAll(self, name2):
+    def remItem(self, name2):
         
         if(name2 in self.name):
             pos = self.name.index(name2)
@@ -120,7 +110,17 @@ class cart():
             self.price.pop(pos)
         
         return
-    
+
+    def remAll(self):
+        self.name.clear()
+        self.ammounts.clear()
+        self.price.clear()
+        self.namePos = 0
+        self.ammPos = 0
+        self.pricePos = 0
+        return
+
+
     #return total price of cart
     def totalPrice(self):
         total = 0
@@ -128,11 +128,11 @@ class cart():
             total+=(self.ammounts[pos]*self.price[pos])
         
         return total
-    
+
     #prints content in cart and the total price
     def __str__(self):
         out = "\nRecipet:\n"
-        for pos in range(0,len(c1.name)):
+        for pos in range(0,len(self.name)):
             out += (f"{self.ammounts[pos]} {self.name[pos]}")
             if self.ammounts[pos]>1:
                 out+="s"
@@ -140,70 +140,4 @@ class cart():
             out += (f": ${number}\n")
             
         return out
-
-
-
-
-#app window, sets up inital window.
-class Yareds_Shop (App):
-    
-    # def setup(self, cart):
-    #     self.c1 = cart
-    
-    def coffeBtn(self):
-            self.c1.add("coffe", 1, 8)
-            print(self.c1)
-            return
-    
-    def updateCart(self):
-        
-        return
-    
-    def build(self, title = "hello"):
-        self.c1 = cart()
-        
-        def callback(instance):
-            self.coffeBtn()
-        
-        # To position oriented widgets again in the proper orientation
-        # use of vertical orientation to set all widgets 
-        superBox = BoxLayout(orientation ='vertical')
- 
-        # To position widgets next to each other,
-        # use a horizontal BoxLayout.
-        HB = BoxLayout(orientation ='horizontal')
-         
-        btn1 = Button(text = "Press to add a coffee")
-        btn1.bind(on_press=callback)
-        
-        btn2 = Button(text ="Two")
- 
-        # HB represents the horizontal boxlayout orientation
-        # declared above
-        HB.add_widget(btn1)
-        HB.add_widget(btn2)
-        
-        btn3 = Button(text = "Three")
- 
-        # superbox used to again align the oriented widgets
-        superBox.add_widget(HB)
-        superBox.add_widget(btn3)
- 
-        return superBox
-    
-    
-
-
-
-
-
-#main section that creates a cart, adds items, toStrings, removes with both remove methods, then toString again. Meant to test all methods
-
-
-menu = Yareds_Shop()
-
-# menu.setup(cart())
-
-menu.run()
-
 
