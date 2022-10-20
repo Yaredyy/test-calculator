@@ -1,4 +1,5 @@
 import cart as car
+import display as dis
 
 
 import kivy
@@ -9,18 +10,17 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 
 
-kivy.require("1.9.1")
 
 #app window, sets up inital window.
 class Yareds_Shop (App):
     
     #setup of buttons action, for binding of on press
     def coffeBtn(self, instance):
-        self.c1.add("coffe", 1, 8)
+        self.c1.add("coffe", 1, 8.00)
         return
     
     def muffinBtn(self, instance):
-        self.c1.add('muffin', 1, 4)
+        self.c1.add('muffin', 1, 4.50)
         return
     
     def printBtn(self, instance):
@@ -35,7 +35,7 @@ class Yareds_Shop (App):
         
     #     return
     
-    def build(self, title = "hello"):
+    def build(self):
         self.c1 = car.inv()
         
         
@@ -83,9 +83,8 @@ class Yareds_Shop (App):
 
 #main section that creates a cart, adds items, toStrings, removes with both remove methods, then toString again. Meant to test all methods
 
+if(__name__ == "__main__"):
 
-menu = Yareds_Shop()
+    menu = Yareds_Shop()
 
-# menu.setup(cart())
-
-menu.run()
+    menu.run()
