@@ -2,7 +2,7 @@ import cart as car
 import display as dis
 
 
-import kivy
+# import kivy
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
